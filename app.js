@@ -39,7 +39,7 @@ var con = mysql.createConnection({
     console.log("Connected!");
   });
 
-
+//Hàm kiểm tra sáng tối để ngắt() :3
 const sendShut = () => {
     let date = new Date;
     let hour = date.getHours();
@@ -63,11 +63,13 @@ const sendShut = () => {
     }
 }
 
+//gọi hàm kiểm tra ở trên
 setInterval(sendShut, 1000);
 
-
+//khi esp kết nối đến server thì chạy vào đây
 io.on('connection', (socket) => {
 
+    //server gửi giá trị mặc định cho esp
     io.to(socket.id).emit("status-change", JSON.parse('{"sts":"'+0m+'"}'));
 
     socket.on('disconnect', () => {
@@ -76,23 +78,26 @@ io.on('connection', (socket) => {
 
 });
 
+//khi submit tren giao diện web
 app.post('/state', (req, res) => {
+    //kiêm tra trạng thái cổng và lưu vào database
     if(0 === parseInt(req.body.state)){
         stateDoor=0;
     }
     else {stateDoor = 1;}
-    
+    //lưu vào database
     con.query(`update iot_controll set state = ${stateDoor} where id = 1`, function (err, result) {
         if (err) throw err;
     });
     con.commit();
-
+    //gửi tín hiệu đóng mở cổng đến esp 
     io.emit('status-change', JSON.parse('{"state":"'+req.body.state+'"}'));
     res.send();
 });
 
 app.get('/', (req, res) => {
-
+    
+    //lấy ra trạng thái cổng và trạng thái ngắt để show lên giao diện
     con.query("select * from iot_controll", function (err, result) {
         if (err) throw err;
         
