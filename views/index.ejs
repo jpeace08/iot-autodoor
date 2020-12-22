@@ -1,35 +1,37 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="/css/mycss.css">
-    <script src="/js/socket.io.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/mycss.css">
+  <script src="/js/socket.io.min.js"></script>
 
-    <title>Home page</title>
+  <title>IOT | Door Automatic</title>
 </head>
+
 <body>
-	<div class="container-fluid text-center tieude">
-		<h1>NHÓM 05 HÂN HẠNH TÀI TRỢ CHƯƠNG TRÌNH NÀY</h1>
-		<h2>Bật các chân </h2>
-        
-        <form id="form-value" action="/state" method="POST" style="display: flex;">
-            <label for="on">On
-              <input type="radio" name="state" id="state" value="1">
-            </label>
-            <label for="off">Off
-              <input type="radio" name="state" id="state" value="0">
-            </label>
-            <button class="btn btn-primary"
-              <%= isEnable===3 ? '':'disabled'%>
-            type="submit">Submit</button>
-        </form>
-    </div>
-<script src="/js/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+  <div class="container-fluid text-center">
+    <h1>NHÓM 05 HÂN HẠNH TÀI TRỢ CHƯƠNG TRÌNH NÀY</h1>
+    <h2>Bật các chân </h2>
+
+    <form id="form-value" action="/" method="POST" style="display: flex;">
+      <label for="on">On
+        <input <%=stateDoor===1 ? 'checked' : '' %> type="radio" name="state" id="state" value="1">
+      </label>
+      <label for="off">Off
+        <input <%=stateDoor===0 ? 'checked' : '' %> type="radio" name="state" id="state" value="0">
+      </label>
+      <button class="btn btn-primary" <%=isEnable===3 ? '' :'disabled'%>
+        type="submit">Submit</button>
+    </form>
+  </div>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/index.js"></script>
 
 </body>
+
 </html>

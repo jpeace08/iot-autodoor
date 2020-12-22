@@ -10,9 +10,9 @@
 #define USER_SERIAL Serial
 
 
-const char* ssid = "P302";
-const char* pass = "23456789";
-const char* host ="192.168.1.13";
+const char* ssid = "FIT";
+const char* pass = "fit@vimaru";
+const char* host ="172.26.0.40";
 
 int port = 3000;
 char * sts="q";
@@ -27,6 +27,7 @@ void setup() {
 	searchWiFi();
 	connectWiFi();
 
+  //ket noi esp voi server qua socket
 	webSocket.begin(host,port);
 	Wire.begin(D1, D2);
 
